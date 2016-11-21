@@ -1,0 +1,35 @@
+### OSX ###
+.DS_Store
+
+### SublimeText ###
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+*.sublime-workspace
+*.sublime-project
+
+# Generated files
+*.log
+*.pot
+*.pyc
+*.pyo
+*.swp
+_build
+*.egg-info/
+
+
+# Project Specific Stuff
+*/public/static/
+
+# Generated when running py.test for the Cookiecutter Django generation tests
+.cache/
+
+# Generated when running celery beat
+celerybeat-schedule.db
+
+# Unit test / coverage reports
+.coverage
+.tox
+.cache

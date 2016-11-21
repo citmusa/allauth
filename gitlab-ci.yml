@@ -1,0 +1,55 @@
+# CI for Allauth Test
+stages:
+  - development
+  - preview
+  - production
+
+development_job:
+  stage: development
+  script:
+  - find . -name "*.pyc" -delete
+  - test -d virtualenv || virtualenv -p /usr/local/bin/python2.7 --no-site-packages virtualenv
+  - virtualenv/bin/pip install -U pip
+  - virtualenv/bin/pip install -r requirements/production.txt --no-cache-dir --exists-action w
+  - virtualenv/bin/python allauth/manage.py migrate
+  - virtualenv/bin/python allauth/manage.py collectstatic --noinput
+  - touch uwsgi.ini
+  tags:
+  - gm-dev
+  except:
+  - tags
+
+preview_job:
+  stage: preview
+  script:
+  - export http_proxy='http://50.116.30.54:80'
+  - export https_proxy='http://50.116.30.54:80'
+  - find . -name "*.pyc" -delete
+  - test -d virtualenv || virtualenv -p /usr/local/bin/python2.7 --no-site-packages virtualenv
+  - virtualenv/bin/pip install -U pip
+  - virtualenv/bin/pip install -r requirements/production.txt --no-cache-dir --exists-action w --trusted-host pypi.python.org
+  - virtualenv/bin/python allauth/manage.py migrate
+  - virtualenv/bin/python allauth/manage.py collectstatic --noinput
+  - touch uwsgi.xml
+  tags:
+  - pre-corvette
+  except:
+  - tags
+
+production_job:
+  stage: production
+  script:
+  - export http_proxy='http://50.116.30.54:80'
+  - export https_proxy='http://50.116.30.54:80'
+  - find . -name "*.pyc" -delete
+  - test -d virtualenv || virtualenv -p /usr/local/bin/python2.7 --no-site-packages virtualenv
+  - virtualenv/bin/pip install -U pip
+  - virtualenv/bin/pip install -r requirements/production.txt --no-cache-dir --exists-action w --trusted-host pypi.python.org
+  - virtualenv/bin/python allauth/manage.py migrate
+  - virtualenv/bin/python allauth/manage.py collectstatic --noinput
+  - touch uwsgi.xml
+  type: deploy
+  tags:
+  - prod-corvette
+  only:
+  - master
