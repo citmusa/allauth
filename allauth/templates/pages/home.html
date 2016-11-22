@@ -1,7 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>This is Home</h2>
-    <p>
-      go to <a class="btn-link" href="{% url 'account_login' %}">Login</a>
+    <h2>Esto es Home</h2>
+
+    {% if request.user.is_authenticated %}
+        <p>
+            <strong>{{request.user.username}}</strong>
+        </p>
+        <p>
+          Ya te quieres ir?
+          <form method="post" action="/accounts/logout/">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Cerrar sesión</button>
+          </form>
+        </p>
+{% else %}
+     <p>
+      <a class="btn-link" href="{% url 'account_login' %}"> Iniciar sesión</a>
     </p>
+{% endif %}
+
+
 {% endblock content %}
