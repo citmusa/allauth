@@ -29,6 +29,20 @@ class User(AbstractUser):
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
 
+    # TODO: Discuss if doing this instead of with signal.
+    # requires also to supply custom form to the signup view
+    # http://stackoverflow.com/questions/36488743/django-allauth-overriding-default-signup-form
+    # def save(self):
+    # """ Save also profile """
+    # # Let userena do it's thing
+    # user = super(SignupForm, self).save()
+    # # You do all the logic needed for your own extra profile
+    # profile = Profile()
+    # profile.extra_field = self.cleaned_data['field']
+    # profile.save()
+    # # Always return the new user
+    # return user
+
 
 class WorkerProfile(models.Model):
     """ Abstract models to know with type of user has some fields """
