@@ -62,7 +62,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.twitter',
     'crispy_forms',
     'utils',
-    'users'
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
