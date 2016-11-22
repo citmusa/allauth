@@ -18,7 +18,7 @@ ALLOWED_HOSTS = []
 DEBUG = False
 
 ADMINS = (
-    ('Admin', 'desarrolloqa@comunicaciongm.com.mx'),
+    ('Admin', 'admin@email.com'),
 )
 MANAGERS = ADMINS
 
