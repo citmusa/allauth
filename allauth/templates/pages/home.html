@@ -1,1 +1,7 @@
 {% extends "base.html" %}
+{% block content %}
+    <h2>This is Home</h2>
+    <p>
+      go to <a class="btn-link" href="{% url 'account_login' %}">Login</a>
+    </p>
+{% endblock content %}

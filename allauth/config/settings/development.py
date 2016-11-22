@@ -7,11 +7,12 @@ DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '33.33.0.10']
 
-# EMAIL
+# EMAIL using MailHog
 # ------------------------------------------------------------------------------
-# EMAIL_PORT = 1025
-# EMAIL_HOST = 'localhost'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_PORT = 1025
+EMAIL_HOST = 'localhost'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # DATABASES Mysql
 # ------------------------------------------------------------------------------
